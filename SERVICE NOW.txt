@@ -1,0 +1,80 @@
+if(g_form.isNewRecord()){
+g_form.addInfoMessage('please fill all madatory fields');
+  g_form.setMandatory('caller_id',true);
+  g_form.setMandatory('short_description',true);
+  g_form.setDisabled('number',true);
+  g-form.setDisabled('priority',true);
+}
+}
+----------------------------------------------------------------------------------------------
+
+function onchange(control,oldvalue,newvalue,isloading,istemplate() {
+   //Type appropriate comment here, and begin script below
+  if(isLoading || newvalue === '') {
+	return;                                                                           CLIENT SCRIPT
+  }
+   if(newvalue == 3){
+	   g_form.setMandatory('hold_reason',true);
+	   g_from.setDisplay('hold_reason',true);
+	   g_form.showFieldMsg('hold_reason','please select atleast one hold reason','warning',false);
+   }else{
+	   g_form.setMandatory('hold_reason',false);
+	   g_form.setDispaly('hold-reason',false);
+  }
+}
+    
+----------------------------------------------------------------------------------------
+var shortDesc = ['Incident Task1','Incident Task2','Incident Task3',];
+for(i=0;i<shortDesc.length;i++){
+   var gr = new GlideRecord('incident_task');                                                      UI ACTIONS
+   gr.initialize();
+   gr.short_description = shortDesc[i];                                1. there should be a ui action on incident record to create 3 incident task
+   gr.incident = current.sys_id;                                         automatically associated with same incident?
+   gr.insert();
+}
+action.setRedirectURL(current);
+
+------------------------------------------------------------------------------------------
+
+BUSINESS RULE:
+
+BR are the server side script which means that it will execute on server or database.
+the table of BR is sys_script where all br scripts are stored.
+
+ACTIONNS WILL PERFORM ON BUSINESS RULE;
+1.update record fields when a databse query runs
+2.modifiying date formats
+3.manage failed log in attempts
+4.generating events.
+
+TYPES OF BUSINESS RULE:
+1.Before
+2.After
+3.Async
+4.Dispaly
+-------------------------------------------------------------------------------------------------
+
+IMPORTANT QUESTON FOR SERVICENOW
+
+1.what is sys_id in servicenow?
+A) it is a 32 unique character id,it is used to identify each record created in each servicenows table.
+-----------------------------------------------------------------------------------------------------
+
+
+CLIENT: the one which takes input. (EX:FORM) CLIENTSIDE APIS: GLiderecord
+
+CLIENT: javascript + client side API + client side server
+                     ---------------
+
+SERVER: once client is submitted or saved, the values will be stored in server.(EX:DATABSE)
+
+SERVER: javascript + server side API + server side server
+                      --------------
+---------------------------------------------------------------------------------------------------------
+
+JAVA SCRIPT:
+---*-----*----
+1.   //------> single line comment
+2.  /**/-------> multi line comment
+3. loop
+----------------------------------------------------------------------
